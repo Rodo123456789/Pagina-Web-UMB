@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generar Cita</title>
+    <link rel="icon" href="/static/img/favicon.ico" type="Image/x-icon">
+    <meta name="description" content="Página oficial de la UES de San José del Rincón">
+    <meta name="author" content="Rodolfo Cruz Ibarra">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/cita.css" />
+</head>
+
+
+<body>
+
+    <header class="menu">
+        <h1 class="titulo">Generar Cita</h1>
+
+        <nav class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/contacto">Contacto</a>
+        </nav>
+    </header>
+
+
+    <main class="main-content">
+        <section class="formulario-cita">
+
+            <img src="/static/img/form.jpg" class="img-cita">
+
+            <form id="formCita">
+
+                <label>Nombre Completo</label>
+                <input type="text" name="nombre" required minlength="5">
+
+                <label>Número de Teléfono</label>
+                <input type="tel" name="telefono" required pattern="[0-9]{10}" maxlength="10">
+
+                <label>Correo Electrónico</label>
+                <input type="email" name="correo" required>
+
+                <label>Fecha de la Cita (solo días hábiles)</label>
+                <input type="date" name="fecha" id="fechaCita" required>
+
+                <label>Hora de la Cita</label>
+                <input type="time" name="hora" id="horaCita" required>
+
+                <label>Motivo de la Cita</label>
+                <textarea name="motivo" required minlength="10"></textarea>
+
+                <button type="submit" class="btn-enviar">Enviar</button>
+
+            </form>
+
+        </section>
+    </main>
+
+    <footer class="footer">© 2025 – Todos los derechos reservados.</footer>
+
+</body>
+</html>
+
+<script>
+const fecha = document.getElementById("fechaCita");
+const hoy = new Date().toISOString().split("T")[0];
+fecha.min = hoy;
+</script>
+
+
+<script>
+function formatearHora(hora24) {
+    let [h, m] = hora24.split(":");
+    h = parseInt(h);
+
+    const sufijo = h >= 12 ? "PM" : "AM";
+    h = h % 12 || 12;
+
+    return `${h}:${m} ${sufijo}`;
+}
+
+document.getElementById("formCita").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const datos = new FormData(form);
+    const hora24 = datos.get("hora");
+    const horaAMPM = formatearHora(hora24);
+
+    datos.set("hora", horaAMPM);
+
+    const respuesta = await fetch("/guardar_cita", {
+        method: "POST",
+        body: datos
+    });
+
+    alert("La cita ha sido registrada");
+    form.reset();
+});
+</script>
