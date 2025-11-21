@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #e3e3e3;
+}
+
+.direccion {
+    color: #000;
+    text-align: center;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105px;
+    background: rgba(128, 186, 38);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.menu-izq {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.perfil {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #686868;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.nav-links a:hover {
+    color: #0a00be;
+}
+
+.contenido {
+    max-width: 950px;
+    margin: 140px auto 50px;
+    padding: 0 20px;
+}
+
+.titulo-central {
+    text-align: center;
+    color: #000;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+
+.mapa-contenedor {
+    width: 100%;
+    height: 460px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.mapa-contenedor iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+.contacto-grid {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+
+.contacto-item {
+    text-align: center;
+}
+
+.icono {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #000000;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+
+.icono:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.contacto-titulo {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #000000;
+}
+
+.contacto-dato {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #000000;
+}
+
+
+.footer {
+    text-align: center;
+    background: rgb(128, 186, 38);
+    color: #000000;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .perfil { width: 44px; height: 44px; border-width: 2px; }
+    .titulo-menu { display: none; }
+    .nav-links { display: none; }
+    .slides { width: 94%; height: 320px; }
+}
